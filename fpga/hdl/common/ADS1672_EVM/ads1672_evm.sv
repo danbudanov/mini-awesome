@@ -1,4 +1,4 @@
-module ads1672_controller
+module ads1672_evm
 (
     input clk, rst,
 
@@ -43,7 +43,6 @@ end
 /**
 * Output decoder
 */
-//always @(State)
 always_comb
 begin
     case (State)
