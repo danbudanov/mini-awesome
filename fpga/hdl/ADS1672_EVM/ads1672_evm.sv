@@ -14,6 +14,7 @@ module ads1672_evm
 );
 
 localparam DATA_WIDTH = 24;
+localparam DATA_WIDTH_WIDTH = $clog2(DATA_WIDTH)
 typedef enum logic [2 : 0] {
     START,
     START_END,
@@ -27,6 +28,7 @@ typedef enum logic [2 : 0] {
 
 reading_stage State, NextState;
 logic [DATA_WIDTH] data;
+logic [DATA_WIDTH_WIDTH] data_ct;
 
 /*
 * State sequencer
@@ -39,6 +41,22 @@ begin
         State <= NextState;
     end
 end
+
+/*
+* Data Counter
+*/
+always_ff (posedge clk)
+begin
+    case(State)
+
+        START        : data_ct <= 0;
+        START_END    : data_ct <= 0;
+        DRDY         : data_ct <= 0;
+        DRDY_END     : data_ct <= 0;
+        SCLOCK_START : data_ct <= 0;
+        default      : data_ct <= data_ct + 1;
+end
+
 
 /**
 * Output decoder
@@ -89,21 +107,21 @@ always_comb
 begin
     case (State) 
         START:
-            NextState <= START_END;
+            NextState = START_END;
         START_END:  
-            NextState <= DRDY;
+            NextState = DRDY;
         DRDY:  
-            NextState <= DRDY_END;
+            NextState = DRDY_END;
         DRDY_END:  
-            NextState <= SCLOCK_START;
+            NextState = SCLOCK_START;
         SCLOCK_START:  
-            NextState <= FIRST_BIT;
+            NextState = FIRST_BIT;
         FIRST_BIT:  
-            NextState <= NEXT_BIT;
+            NextState = NEXT_BIT;
         NEXT_BIT:  
-            NextState <= NEXT_BIT_2;
+            NextState = NEXT_BIT_2;
         START:  
-            NextState <= START_END;
+            NextState = START_END;
 
 
     endcase
