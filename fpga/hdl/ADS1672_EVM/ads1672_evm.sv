@@ -29,7 +29,7 @@ localparam DATA_WIDTH_WIDTH = $clog2(DATA_WIDTH);
 localparam STATES_NUM = 6;
 localparam STATES_NUM_WIDTH = $clog2(STATES_NUM);
 
-typedef enum logic [STATES_ENUM_WIDTH-1 : 0] {
+typedef enum logic [STATES_NUM_WIDTH-1 : 0] {
     WAIT, // Wait for the read to be requested
     START, // Emit the start output signal
     START_END, // End the start output signal
