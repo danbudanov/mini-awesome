@@ -35,10 +35,10 @@ typedef enum logic [STATES_ENUM_WIDTH-1 : 0] {
     START_END, // End the start output signal
     FIRST_BIT, // Read in the first bit
     NEXT_BIT, // Read in proceeding bits
-    DONE, // Output the data value read in from ADC
-    } reading_stage;
+    DONE // Output the data value read in from ADC
+} reading_state_t;
 
-reading_stage State, NextState;
+reading_state_t State, NextState;
 logic [DATA_WIDTH-1 : 0] data; // Buffer that the bits are clocked into
 logic [DATA_WIDTH_WIDTH-1 : 0] data_ct, data_ct_new; // Track the bits read in
 
@@ -50,11 +50,11 @@ assign clkx = clk;
 /**
 * State sequencer
 */
-always_ff (posedge clk)
-begin
+always_ff @(posedge clk)
+begin : STATE_SEQUENCER
     if (rst) begin
         State   <= WAIT;
-        data_ct <= data_ct_new;
+        data_ct <= '0;
     end else begin
         State   <= NextState;
         data_ct <= data_ct_new;
@@ -65,7 +65,7 @@ end
 * Data Counter
 */
 always_comb
-begin
+begin : DATA_COUNTER
     case(State)
         NEXT_BIT : data_ct_new = data_ct + 1;
         default  : data_ct_new = 0;
@@ -76,7 +76,7 @@ end
 * Output decoder
 */
 always_comb
-begin
+begin : START_DECODER
     case (State)
         START   : start <= 1'b1;
         default : start <= 1'b0;
@@ -87,7 +87,7 @@ end
 * Next state logic
 */
 always_comb
-begin
+begin : NEXT_STATE
     case (State) 
         WAIT :
             NextState = (measure) ? START : WAIT;
@@ -108,7 +108,7 @@ end
 * If read is complete, output the calculated value
 */
 always_latch
-begin
+begin : OUTPUT_DATA
     if (State == DONE)
         data_out <= data
 end
