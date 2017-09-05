@@ -1,0 +1,2 @@
+../../hdl/ADS1672_EVM/ADS1672_EVM.sv
+ADS1672_EVM_tb.sv
