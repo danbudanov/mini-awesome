@@ -118,8 +118,9 @@ end
 * If in a writing state, set the bit of data corresponding to the count
 */
 always_latch
-begin
+begin : WRITE_DATA
     if ( (State == FIRST_BIT) || (State == NEXT_BIT) )
-        data[data_ct] <= drr;
+        // Note: data is clocked in MSB first
+        data[DATA_WIDTH - data_ct] <= drr;
 end
 endmodule
