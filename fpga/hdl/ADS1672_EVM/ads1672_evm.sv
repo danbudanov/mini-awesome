@@ -69,6 +69,7 @@ begin : DATA_COUNTER
     case(State)
         NEXT_BIT : data_ct_new = data_ct + 1;
         default  : data_ct_new = 0;
+    endcase
 end
 
 
@@ -98,7 +99,7 @@ begin : NEXT_STATE
         FIRST_BIT : // Continue on to the next bit 
             NextState = NEXT_BIT;
         NEXT_BIT : // if bits are full, go to done state
-            NextState = (new_data_ct == DATA_WIDTH) ? DONE : NEXT_BIT;
+            NextState = (data_ct_new == DATA_WIDTH) ? DONE : NEXT_BIT;
         DONE :  
             NextState = WAIT;
     endcase
@@ -110,7 +111,7 @@ end
 always_latch
 begin : OUTPUT_DATA
     if (State == DONE)
-        data_out <= data
+        data_out <= data;
 end
 
 /**
@@ -120,4 +121,5 @@ always_latch
 begin
     if ( (State == FIRST_BIT) || (State == NEXT_BIT) )
         data[data_ct] <= drr;
+end
 endmodule
