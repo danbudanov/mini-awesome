@@ -7,7 +7,7 @@ Useful links for project, grouped by category
 
 
 ## Spring 2017 Paper
-Report by Alex Simoneaux: [Research Project Summary and Future Work](https://drive.google.com/file/d/0Bx7eqDouoA_6WVBZTVh0NF9yOUk/view?usp=sharing)
+* Report by Alex Simoneaux: [Research Project Summary and Future Work](https://drive.google.com/file/d/0Bx7eqDouoA_6WVBZTVh0NF9yOUk/view?usp=sharing)
 
 
 ## ADC
