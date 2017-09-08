@@ -22,7 +22,7 @@ module ads1672_evm
     input drr, // input data into processor
     input drdy_n, // data ready interrupt source to processor
     output logic start, // general purpose pin toggles start
-    output logic [DATA_WIDTH-1 : 0] data_out
+    output logic [DATA_WIDTH-1 : 0] data_out // output data reading
 );
 
 localparam DATA_WIDTH_WIDTH = $clog2(DATA_WIDTH);
@@ -123,4 +123,5 @@ begin : WRITE_DATA
         // Note: data is clocked in MSB first
         data[DATA_WIDTH - data_ct] <= drr;
 end
+
 endmodule
