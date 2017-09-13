@@ -24,8 +24,6 @@ logic [DATA_WIDTH-1 : 0] data_out; // output data reading
 
 localparam DATA_WIDTH = 24;
 
-logic [DATA_WIDTH - 1 : 0] test_reading = 
-    24'b110010101100111100001100;
 
 initial begin
     clk = 0;
@@ -35,36 +33,32 @@ initial begin
     #2;
     rst = 0;
 
-    #10;
+    #10 measure = 1;
+    #2  measure = 0;
 
-
-    #2;
+    #40 $finish;
 
 
 end
 
 always #1 clk = !clk;
 
-assign clkx = clk;
-assign clkr =clkx;
+integer i; 
+always_ff @(posedge clkr)
+begin
+end
 
-assign fsr = drdy_n;
+ads1672_evm_device ads1672_evm_device_inst
+(
+    .*
+);
+
 
 ads1672_evm ads1672_evm_inst
 (
-    .clk, rst,
+    .*
+);
 
-    input measure, // pulse indicating the start of measuring
-
-    output clkx, // Serial transmit clock from processor (jumped to clkr)
-    input clkr,  // Serial receive clock from ADC (jumped to clkx)
-    output fsx, // frame sync signal from processor
-    input fsr, // frame sync return to processor, src from drdy_n
-
-    input drr, // input data into processor
-    input drdy_n, // data ready interrupt source to processor
-    output logic start, // general purpose pin toggles start
-    output logic [DATA_WIDTH-1 : 0] data_out // output data reading
-)
+assign clkx = clk;
 
 endmodule
