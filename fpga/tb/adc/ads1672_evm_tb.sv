@@ -45,13 +45,29 @@ always #1 clk = !clk;
 
 ads1672_evm_device ads1672_evm_device_inst
 (
-    .*
+    .clkx(clkx), 
+    .clkr(clkr),
+    .fsx(fsx), 
+    .fsr(fsr),
+    .start(start),
+    .drdy_n(drdy_n),
+    .drr(drr)
 );
 
 
 ads1672_evm ads1672_evm_inst
 (
-    .*
+    .clk(clk),
+    .rst(rst),
+    .clkx(clkx), 
+    .clkr(clkr),
+    .fsx(fsx),
+    .fsr(fsr),
+    .drr(drr),
+    .drdy_n(drdy_n),
+    .start(start),
+    .data_out(data_out),
+    .measure(measure)
 );
 
 assign clkx = clk;

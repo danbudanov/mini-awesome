@@ -39,7 +39,7 @@ typedef enum logic [STATES_NUM_WIDTH-1 : 0] {
 } reading_state_t;
 
 reading_state_t State = WAIT;
-reading_state_t NextState;
+reading_state_t NextState = WAIT;
 logic [DATA_WIDTH-1 : 0] data; // Buffer that the bits are clocked into
 logic [DATA_WIDTH_WIDTH-1 : 0] data_ct, data_ct_new; // Track the bits read in
 
