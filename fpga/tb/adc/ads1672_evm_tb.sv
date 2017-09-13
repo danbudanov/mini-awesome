@@ -15,18 +15,19 @@ logic rst;
 logic measure; // pulse indicating the start of measuring
 
 logic clkx; // Serial transmit clock from processor (jumped to clkr)
-logic clkr;  // Serial receive clock from ADC (jumped to clkx)
-logic fsx; // frame sync signal from processor
-logic fsr; // frame sync return to processor; src from drdy_n
+logic clkr; // Serial receive clock from ADC (jumped to clkx)
+logic fsx;  // frame sync signal from processor
+logic fsr;  // frame sync return to processor; src from drdy_n
 
-logic drr; // logic data into processor
-logic drdy_n; // data ready interrupt source to processor
-logic start; // general purpose pin toggles start
+logic drr;                         // logic data into processor
+logic drdy_n;                      // data ready interrupt source to processor
+logic start;                       // general purpose pin toggles start
 logic [DATA_WIDTH-1 : 0] data_out; // output data reading
 
 initial begin
     clk = 0;
     rst = 1;
+    measure = 0;
 
     // Toggle reset
     #2;
@@ -41,11 +42,6 @@ initial begin
 end
 
 always #1 clk = !clk;
-
-integer i; 
-always_ff @(posedge clkr)
-begin
-end
 
 ads1672_evm_device ads1672_evm_device_inst
 (

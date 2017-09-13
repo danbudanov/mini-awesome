@@ -1,20 +1,20 @@
 module ads1672_evm_device
 #(
-    parameter DATA_WIDTH =24
+    parameter DATA_WIDTH = 24
 )
 (
-    input clkx,    //serial transmit clk from processor
+    input clkx,          // serial transmit clk from processor
     output logic clkr,   // serial receive clk from ADC
 
-    input fsx,     // frame sync signal from processor
+    input fsx,           // frame sync signal from processor
     output logic fsr,    // frame sync signal from ADC
 
-    input start,    // toggle start pin
-    output logic drdy_n,  // data ready interrupt to processor
-    output logic drr      // data to processor
+    input start,         // toggle start pin
+    output logic drdy_n, // data ready interrupt to processor
+    output logic drr     // data to processor
 );
 
-logic [DATA_WIDTH - 1 : 0] test_reading = 24'b110010101100111100001100;
+logic [DATA_WIDTH - 1 : 0] test_reading = 'b110010101100111100001100;
 
 logic in_operation;
 
@@ -39,6 +39,7 @@ begin
             drr = test_reading[DATA_WIDTH - i];
             i++;
         end
+    // If neither started not in operation, idle
     end else begin
         in_operation = 0;
         drr = 1'bx;

@@ -16,10 +16,10 @@ module ads1672_evm
 
     output clkx, // Serial transmit clock from processor (jumped to clkr)
     input clkr,  // Serial receive clock from ADC (jumped to clkx)
-    output fsx, // frame sync signal from processor
-    input fsr, // frame sync return to processor, src from drdy_n
+    output fsx,  // frame sync signal from processor
+    input fsr,   // frame sync return to processor, src from drdy_n
 
-    input drr, // input data into processor
+    input drr,    // input data into processor
     input drdy_n, // data ready interrupt source to processor
     output logic start, // general purpose pin toggles start
     output logic [DATA_WIDTH-1 : 0] data_out // output data reading
@@ -38,7 +38,8 @@ typedef enum logic [STATES_NUM_WIDTH-1 : 0] {
     DONE // Output the data value read in from ADC
 } reading_state_t;
 
-reading_state_t State, NextState;
+reading_state_t State = WAIT;
+reading_state_t NextState;
 logic [DATA_WIDTH-1 : 0] data; // Buffer that the bits are clocked into
 logic [DATA_WIDTH_WIDTH-1 : 0] data_ct, data_ct_new; // Track the bits read in
 
