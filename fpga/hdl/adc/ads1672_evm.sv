@@ -68,8 +68,9 @@ end
 always_comb
 begin : DATA_COUNTER
     case(State)
-        NEXT_BIT : data_ct_new = data_ct + 1;
-        default  : data_ct_new = 0;
+        NEXT_BIT  : data_ct_new = data_ct + 1;
+        FIRST_BIT : data_ct_new = data_ct + 1;
+        default   : data_ct_new = 0;
     endcase
 end
 
@@ -103,26 +104,33 @@ begin : NEXT_STATE
             NextState = (data_ct_new == DATA_WIDTH) ? DONE : NEXT_BIT;
         DONE :  
             NextState = WAIT;
+        default:
+            NextState = WAIT;
     endcase
 end
 
 /**
 * If read is complete, output the calculated value
 */
-always_latch
+always_ff @(posedge clk)
 begin : OUTPUT_DATA
     if (State == DONE)
         data_out <= data;
+    else
+        data_out <= data_out;
 end
 
 /**
 * If in a writing state, set the bit of data corresponding to the count
 */
-always_latch
+always_ff @(posedge clk)
 begin : WRITE_DATA
-    if ( (State == FIRST_BIT) || (State == NEXT_BIT) )
+    if ( (State == FIRST_BIT) || (State == NEXT_BIT) ) begin
         // Note: data is clocked in MSB first
-        data[DATA_WIDTH - data_ct] <= drr;
+        data[DATA_WIDTH - 1 - data_ct] <= drr;
+    end else begin 
+        data[DATA_WIDTH - 1 - data_ct] <= data[DATA_WIDTH - 1 - data_ct];
+    end
 end
 
 endmodule

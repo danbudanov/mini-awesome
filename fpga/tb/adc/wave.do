@@ -1,23 +1,41 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
+add wave -noupdate /ADS1672_EVM_tb/DATA_WIDTH
+add wave -noupdate /ADS1672_EVM_tb/clk
 add wave -noupdate /ADS1672_EVM_tb/rst
 add wave -noupdate /ADS1672_EVM_tb/measure
 add wave -noupdate /ADS1672_EVM_tb/clkx
+add wave -noupdate /ADS1672_EVM_tb/clkr
+add wave -noupdate /ADS1672_EVM_tb/fsx
+add wave -noupdate /ADS1672_EVM_tb/fsr
 add wave -noupdate /ADS1672_EVM_tb/drr
 add wave -noupdate /ADS1672_EVM_tb/drdy_n
 add wave -noupdate /ADS1672_EVM_tb/start
-add wave -noupdate -label {Output Data} /ADS1672_EVM_tb/data_out
-add wave -noupdate -label {Internal Start} /ADS1672_EVM_tb/ads1672_evm_inst/start
-add wave -noupdate -label {Final Data} /ADS1672_EVM_tb/ads1672_evm_inst/data_out
-add wave -noupdate -label State /ADS1672_EVM_tb/ads1672_evm_inst/State
-add wave -noupdate -label NextState /ADS1672_EVM_tb/ads1672_evm_inst/NextState
-add wave -noupdate -label {internal data} /ADS1672_EVM_tb/ads1672_evm_inst/data
-add wave -noupdate -label data_ct /ADS1672_EVM_tb/ads1672_evm_inst/data_ct
-add wave -noupdate -label data_ct_new /ADS1672_EVM_tb/ads1672_evm_inst/data_ct_new
+add wave -noupdate /ADS1672_EVM_tb/data_out
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/DATA_WIDTH
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/DATA_WIDTH_WIDTH
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/STATES_NUM
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/STATES_NUM_WIDTH
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/clk
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/rst
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/measure
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/clkx
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/clkr
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/fsx
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/fsr
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/drr
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/drdy_n
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/start
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/data_out
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/State
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/NextState
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/data
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/data_ct
+add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/data_ct_new
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {70 ns} 0}
+WaveRestoreCursors {{Cursor 1} {20 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 194
+configure wave -namecolwidth 352
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -31,4 +49,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ns} {1780 ns}
+WaveRestoreZoom {360 ns} {480 ns}
