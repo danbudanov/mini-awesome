@@ -8,3 +8,76 @@ z2
 !i10f 100
 cModel Technology
 dC:/intelFPGA/17.0
+vads1672_evm
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1505317716
+!i10b 1
+!s100 GLeADXhza>R[LfDZS:bcl1
+I37dN5X?9;>`^lF8:e`12;0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 ads1672_evm_sv_unit
+S1
+Z3 dC:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc
+w1504753844
+8C:/Users/danbu/Documents/Github/mini-awesome/fpga/hdl/adc/ads1672_evm.sv
+FC:/Users/danbu/Documents/Github/mini-awesome/fpga/hdl/adc/ads1672_evm.sv
+L0 8
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1505317716.000000
+!s107 C:/Users/danbu/Documents/Github/mini-awesome/fpga/hdl/adc/ads1672_evm.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/danbu/Documents/Github/mini-awesome/fpga/hdl/adc/ads1672_evm.sv|
+!i113 1
+Z6 o-work work -sv
+Z7 tCvgOpt 0
+vads1672_evm_device
+R0
+R1
+!i10b 1
+!s100 4GH2:?Tbh;=ZGD@egQ;I80
+I@3Dcl<9obG0ORo3a7a80P2
+R2
+!s105 ads1672_evm_device_sv_unit
+S1
+R3
+w1505316140
+8C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv
+FC:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv|
+!i113 1
+R6
+R7
+vADS1672_EVM_tb
+R0
+R1
+!i10b 1
+!s100 ezMkgi74Bzf<XdAPBl4D?0
+IG_B:6fmcB8lYE:;Weh`om3
+R2
+!s105 ads1672_evm_tb_sv_unit
+S1
+R3
+w1505317700
+8C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv
+FC:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv
+L0 8
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv|
+!i113 1
+R6
+R7
+n@a@d@s1672_@e@v@m_tb

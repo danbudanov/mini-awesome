@@ -7,6 +7,8 @@
 
 module ADS1672_EVM_tb;
 
+localparam DATA_WIDTH = 24;
+
 logic clk;
 logic rst;
 
@@ -22,9 +24,6 @@ logic drdy_n; // data ready interrupt source to processor
 logic start; // general purpose pin toggles start
 logic [DATA_WIDTH-1 : 0] data_out; // output data reading
 
-localparam DATA_WIDTH = 24;
-
-
 initial begin
     clk = 0;
     rst = 1;
@@ -36,7 +35,7 @@ initial begin
     #10 measure = 1;
     #2  measure = 0;
 
-    #40 $finish;
+    #100 $finish;
 
 
 end
