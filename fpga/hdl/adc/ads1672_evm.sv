@@ -68,8 +68,8 @@ end
 always_comb
 begin : DATA_COUNTER
     case(State)
-        NEXT_BIT  : data_ct_new = data_ct + 1;
         FIRST_BIT : data_ct_new = data_ct + 1;
+        NEXT_BIT  : data_ct_new = data_ct + 1;
         default   : data_ct_new = 0;
     endcase
 end
