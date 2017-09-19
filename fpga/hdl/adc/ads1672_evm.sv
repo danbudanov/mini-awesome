@@ -125,11 +125,12 @@ end
 */
 always_ff @(posedge clk)
 begin : WRITE_DATA
-    if ( (State == FIRST_BIT) || (State == NEXT_BIT) ) begin
+    //if ( (State == FIRST_BIT) || (State == NEXT_BIT) ) begin
+    if ( (NextState == DONE) || (State == NEXT_BIT) ) begin
         // Note: data is clocked in MSB first
         data[DATA_WIDTH - 1 - data_ct] <= drr;
-    end else begin 
-        data[DATA_WIDTH - 1 - data_ct] <= data[DATA_WIDTH - 1 - data_ct];
+    //end else begin 
+        //data[DATA_WIDTH - 1 - data_ct] <= data[DATA_WIDTH - 1 - data_ct];
     end
 end
 
