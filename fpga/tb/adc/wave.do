@@ -24,7 +24,7 @@ add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/data_ct
 add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/data_ct_new
 add wave -noupdate /ADS1672_EVM_tb/ads1672_evm_inst/data_write
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {170 ns} 0}
+WaveRestoreCursors {{Cursor 1} {200 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 293
 configure wave -valuecolwidth 100
@@ -40,4 +40,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {160 ns} {400 ns}
+WaveRestoreZoom {90 ns} {330 ns}

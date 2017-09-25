@@ -1,4 +1,11 @@
-C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv {1 {vlog -work work -sv -stats=none C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv
+C:/Users/danbu/Documents/Github/mini-awesome/fpga/hdl/adc/ads1672_evm.sv {1 {vlog -work work -sv -stats=none C:/Users/danbu/Documents/Github/mini-awesome/fpga/hdl/adc/ads1672_evm.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ads1672_evm
+
+Top level modules:
+	ads1672_evm
+
+} {} {}} C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv {1 {vlog -work work -sv -stats=none C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_device.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module ads1672_evm_device
 
