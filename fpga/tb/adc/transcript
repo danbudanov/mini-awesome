@@ -342,3 +342,48 @@ force -freeze sim:/clk_div/clk 1 0, 0 {50000 ps} -r {100 ns}
 
 # Loading work.clk_div
 run
+# Compile of ads1672_evm_device.sv was successful.
+# Compile of ads1672_evm_tb.sv was successful.
+# Compile of ads1672_evm.sv was successful.
+# Compile of clk_div.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.ADS1672_EVM_tb
+# End time: 23:56:47 on Sep 25,2017, Elapsed time: 13:06:11
+# Errors: 0, Warnings: 3
+# vsim -gui work.ADS1672_EVM_tb 
+# Start time: 23:56:47 on Sep 25,2017
+# Loading sv_std.std
+# Loading work.ADS1672_EVM_tb
+# Loading work.ads1672_evm_device
+# Loading work.ads1672_evm
+# ** Warning: (vsim-3839) C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv(73): Variable '/ADS1672_EVM_tb/clkx', driven via a port connection, is multiply driven. See C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv(58).
+#    Time: 0 ns  Iteration: 0  Instance: /ADS1672_EVM_tb File: C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv
+add wave -position insertpoint  \
+sim:/ADS1672_EVM_tb/drdy_n
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: danbu  Hostname: DANBUDANOV-PC  ProcessID: 12928
+#           Attempting to use alternate WLF file "./wlftk11qdj".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftk11qdj
+do C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/wave.do
+run
+# ** Note: $finish    : C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv(39)
+#    Time: 1140 ns  Iteration: 0  Instance: /ADS1672_EVM_tb
+# 1
+# Break in Module ADS1672_EVM_tb at C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv line 39
+# Compile of ads1672_evm_device.sv was successful.
+# Compile of ads1672_evm_tb.sv was successful.
+# Compile of ads1672_evm.sv was successful.
+# Compile of clk_div.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# Loading work.ADS1672_EVM_tb
+# Loading work.ads1672_evm_device
+# Loading work.ads1672_evm
+# ** Warning: (vsim-3839) C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv(73): Variable '/ADS1672_EVM_tb/clkx', driven via a port connection, is multiply driven. See C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv(58).
+#    Time: 0 ns  Iteration: 0  Instance: /ADS1672_EVM_tb File: C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv
+run
+# ** Note: $finish    : C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv(39)
+#    Time: 1140 ns  Iteration: 0  Instance: /ADS1672_EVM_tb
+# 1
+# Break in Module ADS1672_EVM_tb at C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/adc/ads1672_evm_tb.sv line 39

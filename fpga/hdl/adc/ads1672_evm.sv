@@ -40,6 +40,7 @@ typedef enum logic [STATES_NUM_WIDTH-1 : 0] {
 
 reading_state_t State = WAIT;
 reading_state_t NextState = WAIT;
+logic data_write; // Write to data register
 logic [DATA_WIDTH-1 : 0] data; // Buffer that the bits are clocked into
 logic [DATA_WIDTH_WIDTH-1 : 0] data_ct, data_ct_new; // Track the bits read in
 
@@ -47,6 +48,11 @@ logic [DATA_WIDTH_WIDTH-1 : 0] data_ct, data_ct_new; // Track the bits read in
 * Clock being output to ADC
 */
 assign clkx = clk;
+
+/**
+* Write to data reg when state is FIRST_BIT or NEXT_BIT
+*/
+assign data_write = (State == FIRST_BIT) || (State == NEXT_BIT);
 
 /**
 * State sequencer
@@ -123,15 +129,14 @@ end
 /**
 * If in a writing state, set the bit of data corresponding to the count
 */
-always_ff @(posedge clk)
+always_ff @(posedge clk) 
 begin : WRITE_DATA
-    //if ( (State == FIRST_BIT) || (State == NEXT_BIT) ) begin
-    if ( (NextState == DONE) || (State == NEXT_BIT) ) begin
+    if ( data_write ) 
         // Note: data is clocked in MSB first
         data[DATA_WIDTH - 1 - data_ct] <= drr;
     //end else begin 
         //data[DATA_WIDTH - 1 - data_ct] <= data[DATA_WIDTH - 1 - data_ct];
-    end
+    //end
 end
 
 endmodule
