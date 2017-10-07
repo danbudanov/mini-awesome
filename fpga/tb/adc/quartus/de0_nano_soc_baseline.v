@@ -160,7 +160,7 @@ wire     [27: 0]    stm_hw_events;
 wire                fpga_clk_50;
 // connection of internal logics
 assign LED[7: 1]     = fpga_led_internal;
-assign fpga_clk_50   = FPGA_CLK1_50;
+assign fpga_clk_50   = FPGA_CLK_50;
 assign stm_hw_events = {{15{1'b0}}, SW, fpga_led_internal, fpga_debounced_buttons};
 
 assign adc_clkr =   ARDUINO_IO[1];
