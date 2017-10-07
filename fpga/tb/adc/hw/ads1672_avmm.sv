@@ -10,8 +10,6 @@ module ads1672_avmm
     input read, // unless a live read is implemented, extraneous
     output logic [DATA_WIDTH-1 : 0] readdata,
 
-    input write,
-
     // Conduits
 
     output clkx, // Serial transmit clock from processor (jumped to clkr)
