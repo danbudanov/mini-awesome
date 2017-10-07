@@ -163,9 +163,17 @@ assign LED[7: 1]     = fpga_led_internal;
 assign fpga_clk_50   = FPGA_CLK1_50;
 assign stm_hw_events = {{15{1'b0}}, SW, fpga_led_internal, fpga_debounced_buttons};
 
+assign adc_clkr =   ARDUINO_IO[1];
+assign adc_clkx =   ARDUINO_IO[2];
+assign adc_drdy_n = ARDUINO_IO[3];
+assign adc_drr =    ARDUINO_IO[4];
+assign adc_fsr =    ARDUINO_IO[5];
+assign adc_fsx =    ARDUINO_IO[6];
+assign adc_start =  ARDUINO_IO[7];
+
 soc_system u0 (
-    .clk_clk                               (FPGA_CLK_50),                               //                       clk.clk
-    .reset_reset_n                         (hps_fpga_reset_n),                         //                     reset.reset_n
+    .clk_clk                               (FPGA_CLK_50),        //                            clk.clk
+    .reset_reset_n                         (hps_fpga_reset_n),   //                          reset.reset_n
 
     // HPS ethernet
     .hps_0_hps_io_hps_io_emac1_inst_tx_clk(HPS_ENET_GTX_CLK),    //                   hps_0_hps_io.hps_io_emac1_inst_TX_CLK
@@ -251,13 +259,13 @@ soc_system u0 (
     .memory_oct_rzqin(HPS_DDR3_RZQ),                             //                               .oct_rzqin
 
     
-    .adc_ports_clkr                        (<connected-to-adc_ports_clkr>),                        //                 adc_ports.clkr
-    .adc_ports_clkkx                       (<connected-to-adc_ports_clkkx>),                       //                          .clkkx
-    .adc_ports_drdy_n                      (<connected-to-adc_ports_drdy_n>),                      //                          .drdy_n
-    .adc_ports_drr                         (<connected-to-adc_ports_drr>),                         //                          .drr
-    .adc_ports_fsr                         (<connected-to-adc_ports_fsr>),                         //                          .fsr
-    .adc_ports_writeresponsevalid_n        (<connected-to-adc_ports_writeresponsevalid_n>),        //                          .writeresponsevalid_n
-    .adc_ports_start                       (<connected-to-adc_ports_start>)                        //                          .start
+    .adc_ports_clkr                        (adc_clkr),                //                 adc_ports.clkr
+    .adc_ports_clkx                        (adc_clkx),                //                          .clkx
+    .adc_ports_drdy_n                      (adc_drdy_n),              //                          .drdy_n
+    .adc_ports_drr                         (adc_drr),                 //                          .drr
+    .adc_ports_fsr                         (adc_fsr),                 //                          .fsr
+    .adc_ports_fsx                         (adc_fsx),                 //                          .fsx
+    .adc_ports_start                       (adc_start)                //                          .start
 );
 
 // Source/Probe megawizard instance
