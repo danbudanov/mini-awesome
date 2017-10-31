@@ -1,32 +1,7 @@
-//--------------------------------------------------------------------------//
-// Title:        de0_nano_soc_baseline.v                                       //
-// Rev:          Rev 0.1                                                    //
-// Last Revised: 09/14/2015                                                 //
-//--------------------------------------------------------------------------//
-// Description: Baseline design file contains DE0 Nano SoC    				 //
-//              Board pins and I/O Standards.                               //
-//--------------------------------------------------------------------------//
-//Copyright 2015 Altera Corporation. All rights reserved.  Altera products
-//are protected under numerous U.S. and foreign patents, maskwork rights,
-//copyrights and other intellectual property laws.
-//                 
-//This reference design file, and your use thereof, is subject to and
-//governed by the terms and conditions of the applicable Altera Reference
-//Design License Agreement.  By using this reference design file, you
-//indicate your acceptance of such terms and conditions between you and
-//Altera Corporation.  In the event that you do not agree with such terms and
-//conditions, you may not use the reference design file. Please promptly                         
-//destroy any copies you have made.
-//
-//This reference design file being provided on an "as-is" basis and as an
-//accommodation and therefore all warranties, representations or guarantees
-//of any kind (whether express, implied or statutory) including, without
-//limitation, warranties of merchantability, non-infringement, or fitness for
-//a particular purpose, are specifically disclaimed.  By making this
-//reference design file available, Altera expressly does not recommend,
-//suggest or require that this reference design file be used in combination 
-//with any other product not provided by Altera
-//----------------------------------------------------------------------------
+/**
+* @file Receiver_top.v
+* @author Daniil Budanov
+* @brief Top-level module for mini AWESOME elf/vlf radio system
 
 //Group Enable Definitions
 //This lists every pinout group
@@ -37,7 +12,7 @@
 //`define enable_gpio1
 `define enable_HPS
 
-module de0_nano_soc_baseline(
+module Receiver_top (
 
 
 	//////////// CLOCK //////////
@@ -163,14 +138,6 @@ assign LED[7: 1]     = fpga_led_internal;
 assign fpga_clk_50   = FPGA_CLK_50;
 assign stm_hw_events = {{15{1'b0}}, SW, fpga_led_internal, fpga_debounced_buttons};
 
-assign adc_clkr =   ARDUINO_IO[1];
-assign adc_clkx =   ARDUINO_IO[2];
-assign adc_drdy_n = ARDUINO_IO[3];
-assign adc_drr =    ARDUINO_IO[4];
-assign adc_fsr =    ARDUINO_IO[5];
-assign adc_fsx =    ARDUINO_IO[6];
-assign adc_start =  ARDUINO_IO[7];
-
 soc_system u0 (
     .clk_clk                               (FPGA_CLK_50),        //                            clk.clk
     .reset_reset_n                         (hps_fpga_reset_n),   //                          reset.reset_n
@@ -256,16 +223,7 @@ soc_system u0 (
     .memory_mem_dqs_n(HPS_DDR3_DQS_N),                           //                               .mem_dqs_n
     .memory_mem_odt(HPS_DDR3_ODT),                               //                               .mem_odt
     .memory_mem_dm(HPS_DDR3_DM),                                 //                               .mem_dm
-    .memory_oct_rzqin(HPS_DDR3_RZQ),                             //                               .oct_rzqin
-
-    
-    .adc_ports_clkr                        (adc_clkr),                //                 adc_ports.clkr
-    .adc_ports_clkx                        (adc_clkx),                //                          .clkx
-    .adc_ports_drdy_n                      (adc_drdy_n),              //                          .drdy_n
-    .adc_ports_drr                         (adc_drr),                 //                          .drr
-    .adc_ports_fsr                         (adc_fsr),                 //                          .fsr
-    .adc_ports_fsx                         (adc_fsx),                 //                          .fsx
-    .adc_ports_start                       (adc_start)                //                          .start
+    .memory_oct_rzqin(HPS_DDR3_RZQ)                              //                               .oct_rzqin
 );
 
 // Source/Probe megawizard instance
