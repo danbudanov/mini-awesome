@@ -15,7 +15,7 @@ module spoofer_counter
 
     input read_signal;
 
-    output [WIDTH-1 : 0] count_out;
+    output [WIDTH + ZEROS_WIDTH - 1 : 0] count_out;
 );
 
 logic [WIDTH-1 : 0] count, next_count;
