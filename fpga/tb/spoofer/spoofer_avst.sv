@@ -6,14 +6,14 @@
 
 module spoofer_avst
 #(
-    parameter DATA_WIDTH = 32;
+    parameter DATA_WIDTH = 32
 )
 (
     input clk, rst,
 
     input ready,
 
-    output valid,
+    output logic valid,
     output logic [DATA_WIDTH-1 : 0] data
 );
 
@@ -79,5 +79,5 @@ spoofer_counter spoofer_counter_inst
     .read_signal(read_signal),
     .count_out(data_signal)
 );
-    
+
 endmodule

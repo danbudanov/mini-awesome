@@ -8,22 +8,20 @@ module spoofer_counter
 #(
     parameter WIDTH = 24,
     parameter MAX_NUM = (1 << WIDTH) - 1,
-    parameter ZEROS_WIDTH = 32 - WIDTH;
+    parameter ZEROS_WIDTH = 32 - WIDTH
 )
 (
     input rst, clk,
 
-    input read_signal;
+    input read_signal,
 
-    output [WIDTH + ZEROS_WIDTH - 1 : 0] count_out;
+    output [WIDTH + ZEROS_WIDTH - 1 : 0] count_out
 );
 
 logic [WIDTH-1 : 0] count, next_count;
 logic read_enable;
 
-
-assign next_count = (count == MAX_NUM) ? 0 : count + 1;
-assign count_out = {ZEROS_WIDTH'h0, count};
+assign count_out = count; //{ZEROS_WIDTH'h0, count};
 
 logic read_monitor, prev_read_monitor;
 

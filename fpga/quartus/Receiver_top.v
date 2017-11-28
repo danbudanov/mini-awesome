@@ -2,6 +2,7 @@
 * @file Receiver_top.v
 * @author Daniil Budanov
 * @brief Top-level module for mini AWESOME elf/vlf radio system
+*/
 
 //Group Enable Definitions
 //This lists every pinout group

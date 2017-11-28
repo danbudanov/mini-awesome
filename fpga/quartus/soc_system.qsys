@@ -308,6 +308,14 @@
          type = "String";
       }
    }
+   element spoofer_0
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
    element sysid_qsys
    {
       datum _sortIndex
@@ -389,13 +397,13 @@
  <module
    name="ILC"
    kind="interrupt_latency_counter"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="CLOCK_RATE" value="50000000" />
   <parameter name="INTR_TYPE" value="0" />
   <parameter name="IRQ_PORT_CNT" value="3" />
  </module>
- <module name="clk_0" kind="clock_source" version="17.0" enabled="1">
+ <module name="clk_0" kind="clock_source" version="17.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
@@ -404,7 +412,7 @@
  <module
    name="f2sdram_only_master"
    kind="altera_jtag_avalon_master"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="AUTO_DEVICE" value="5CSEMA4U23C6" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
@@ -418,7 +426,7 @@
  <module
    name="fpga_only_master"
    kind="altera_jtag_avalon_master"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="AUTO_DEVICE" value="5CSEMA4U23C6" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
@@ -429,7 +437,7 @@
   <parameter name="PLI_PORT" value="50000" />
   <parameter name="USE_PLI" value="0" />
  </module>
- <module name="hps_0" kind="altera_hps" version="17.0" enabled="1">
+ <module name="hps_0" kind="altera_hps" version="17.1" enabled="1">
   <parameter name="ABSTRACT_REAL_COMPARE_TEST" value="false" />
   <parameter name="ABS_RAM_MEM_INIT_FILENAME" value="meminit" />
   <parameter name="ACV_PHY_CLK_ADD_FR_PHASE" value="0.0" />
@@ -962,7 +970,7 @@
  <module
    name="hps_only_master"
    kind="altera_jtag_avalon_master"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="AUTO_DEVICE" value="5CSEMA4U23C6" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
@@ -976,7 +984,7 @@
  <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="allowMultipleConnections" value="true" />
   <parameter name="avalonSpec" value="2.0" />
@@ -995,7 +1003,7 @@
  <module
    name="mm_bridge_0"
    kind="altera_avalon_mm_bridge"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
   <parameter name="ADDRESS_WIDTH" value="10" />
@@ -1010,7 +1018,7 @@
   <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
   <parameter name="USE_RESPONSE" value="0" />
  </module>
- <module name="msgdma" kind="altera_msgdma" version="17.0" enabled="1">
+ <module name="msgdma" kind="altera_msgdma" version="17.1" enabled="1">
   <parameter name="AUTO_DESCRIPTOR_READ_MASTER_ADDRESS_MAP" value="" />
   <parameter
      name="AUTO_DESCRIPTOR_READ_MASTER_ADDRESS_WIDTH"
@@ -1053,7 +1061,7 @@
   <parameter name="TRANSFER_TYPE" value="Aligned Accesses" />
   <parameter name="USE_FIX_ADDRESS_WIDTH" value="0" />
  </module>
- <module name="nios" kind="altera_nios2_gen2" version="17.0" enabled="1">
+ <module name="nios" kind="altera_nios2_gen2" version="17.1" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
   <parameter name="AUTO_DEVICE" value="5CSEMA4U23C6" />
@@ -1234,7 +1242,7 @@
  <module
    name="nios_clk_timer"
    kind="altera_avalon_timer"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="alwaysRun" value="false" />
   <parameter name="counterSize" value="32" />
@@ -1250,7 +1258,7 @@
  <module
    name="nios_mem"
    kind="altera_avalon_onchip_memory2"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="allowInSystemMemoryContentEditor" value="false" />
   <parameter name="autoInitializationFileName">$${FILENAME}_nios_mem</parameter>
@@ -1282,7 +1290,7 @@
  <module
    name="sample_buffer"
    kind="altera_avalon_onchip_memory2"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="allowInSystemMemoryContentEditor" value="false" />
   <parameter name="autoInitializationFileName">$${FILENAME}_sample_buffer</parameter>
@@ -1311,16 +1319,19 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
+ <module name="spoofer_0" kind="spoofer" version="1.0" enabled="1">
+  <parameter name="DATA_WIDTH" value="32" />
+ </module>
  <module
    name="sysid_qsys"
    kind="altera_avalon_sysid_qsys"
-   version="17.0"
+   version="17.1"
    enabled="1">
   <parameter name="id" value="-1395322110" />
  </module>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="nios.data_master"
    end="msgdma.csr">
   <parameter name="arbitrationPriority" value="1" />
@@ -1329,7 +1340,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="nios.data_master"
    end="nios.debug_mem_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1338,7 +1349,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="nios.data_master"
    end="msgdma.descriptor_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1347,7 +1358,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="nios.data_master"
    end="nios_mem.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -1356,7 +1367,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="nios.data_master"
    end="nios_clk_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -1365,7 +1376,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="hps_0.h2f_lw_axi_master"
    end="mm_bridge_0.s0">
   <parameter name="arbitrationPriority" value="1" />
@@ -1374,7 +1385,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="nios.instruction_master"
    end="nios.debug_mem_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1383,7 +1394,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="nios.instruction_master"
    end="nios_mem.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -1392,7 +1403,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="mm_bridge_0.m0"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1401,7 +1412,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="mm_bridge_0.m0"
    end="ILC.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1410,7 +1421,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="mm_bridge_0.m0"
    end="sysid_qsys.control_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1419,7 +1430,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="mm_bridge_0.m0"
    end="sample_buffer.s2">
   <parameter name="arbitrationPriority" value="1" />
@@ -1428,7 +1439,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="fpga_only_master.master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1437,7 +1448,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="fpga_only_master.master"
    end="ILC.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1446,7 +1457,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="fpga_only_master.master"
    end="sysid_qsys.control_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1455,7 +1466,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="hps_only_master.master"
    end="hps_0.f2h_axi_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1464,7 +1475,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="f2sdram_only_master.master"
    end="hps_0.f2h_sdram0_data">
   <parameter name="arbitrationPriority" value="1" />
@@ -1473,7 +1484,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="fpga_only_master.master"
    end="sample_buffer.s2">
   <parameter name="arbitrationPriority" value="1" />
@@ -1482,7 +1493,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="17.0"
+   version="17.1"
    start="msgdma.mm_write"
    end="sample_buffer.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -1490,117 +1501,128 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
+   kind="avalon_streaming"
+   version="17.1"
+   start="spoofer_0.avst"
+   end="msgdma.st_sink" />
+ <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="hps_only_master.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="sysid_qsys.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="sysid_qsys.clk" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="fpga_only_master.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="jtag_uart.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="jtag_uart.clk" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="f2sdram_only_master.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="mm_bridge_0.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="ILC.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="nios.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="mm_bridge_0.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="ILC.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="nios.clk" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="nios_clk_timer.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="nios_mem.clk1" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="nios_mem.clk1" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="sample_buffer.clk1" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="msgdma.clock" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="msgdma.clock" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="spoofer_0.clock" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="hps_0.f2h_axi_clock" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="hps_0.f2h_sdram0_clock" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="hps_0.h2f_axi_clock" />
  <connection
    kind="clock"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk"
    end="hps_0.h2f_lw_axi_clock" />
  <connection
    kind="interrupt"
-   version="17.0"
+   version="17.1"
    start="hps_0.f2h_irq0"
    end="jtag_uart.irq">
   <parameter name="irqNumber" value="2" />
  </connection>
- <connection kind="interrupt" version="17.0" start="nios.irq" end="msgdma.csr_irq">
+ <connection kind="interrupt" version="17.1" start="nios.irq" end="msgdma.csr_irq">
   <parameter name="irqNumber" value="0" />
  </connection>
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="hps_only_master.clk_reset" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="fpga_only_master.clk_reset" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="f2sdram_only_master.clk_reset" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="sysid_qsys.reset" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="jtag_uart.reset" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="mm_bridge_0.reset" />
- <connection kind="reset" version="17.0" start="clk_0.clk_reset" end="nios.reset" />
+ <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="nios.reset" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="nios_clk_timer.reset" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
+   start="clk_0.clk_reset"
+   end="spoofer_0.reset" />
+ <connection
+   kind="reset"
+   version="17.1"
    start="clk_0.clk_reset"
    end="sample_buffer.reset1" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="nios_mem.reset1" />
- <connection kind="reset" version="17.0" start="clk_0.clk_reset" end="ILC.reset_n" />
+ <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="ILC.reset_n" />
  <connection
    kind="reset"
-   version="17.0"
+   version="17.1"
    start="clk_0.clk_reset"
    end="msgdma.reset_n" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />

@@ -1,0 +1,11 @@
+C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/spoofer/spoofer_avst.sv {0 {vlog -work work -sv -stats=none C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/spoofer/spoofer_avst.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module spoofer_avst
+** Error: (vlog-13069) C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/spoofer/spoofer_avst.sv(9): near ";": syntax error, unexpected ';', expecting ')'.
+
+} {4.0 5.0} {}} C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/spoofer/spoofer_counter.sv {0 {vlog -work work -sv -stats=none C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/spoofer/spoofer_counter.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module spoofer_counter
+** Error: (vlog-13069) C:/Users/danbu/Documents/Github/mini-awesome/fpga/tb/spoofer/spoofer_counter.sv(11): near ";": syntax error, unexpected ';', expecting ')'.
+
+} {4.0 5.0} {}}
