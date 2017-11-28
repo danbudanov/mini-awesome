@@ -1,0 +1,40 @@
+Wed Sep 13 13:53:30 EDT 2017
+Trace back: invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"
+    while executing
+"getCurrentNamespace"
+    (procedure "quit" line 59)
+    invoked from within
+"quit"
+    (command for "WM_DELETE_WINDOW" window manager protocol)
+  <2:C:/intelFPGA/17.0/modelsim_ase/win32aloem/tk8.5/bgerror.tcl:92: ::tkerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
+  <1:proc:57: ::tk::dialog::error::bgerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
+Wed Sep 13 13:54:20 EDT 2017
+Trace back: invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"
+    while executing
+"getCurrentNamespace"
+    (procedure "quit" line 59)
+    invoked from within
+"quit"
+    (command for "WM_DELETE_WINDOW" window manager protocol)
+  <2:C:/intelFPGA/17.0/modelsim_ase/win32aloem/tk8.5/bgerror.tcl:92: ::tkerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
+  <1:proc:57: ::tk::dialog::error::bgerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
+Wed Sep 13 13:58:23 EDT 2017
+Trace back: invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"
+    while executing
+"getCurrentNamespace"
+    (procedure "quit" line 59)
+    invoked from within
+"quit"
+    (command for "WM_DELETE_WINDOW" window manager protocol)
+  <2:C:/intelFPGA/17.0/modelsim_ase/win32aloem/tk8.5/bgerror.tcl:92: ::tkerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
+  <1:proc:57: ::tk::dialog::error::bgerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
+Wed Sep 13 13:58:56 EDT 2017
+Trace back: invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"
+    while executing
+"getCurrentNamespace"
+    (procedure "quit" line 59)
+    invoked from within
+"quit"
+    (command for "WM_DELETE_WINDOW" window manager protocol)
+  <2:C:/intelFPGA/17.0/modelsim_ase/win32aloem/tk8.5/bgerror.tcl:92: ::tkerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
+  <1:proc:57: ::tk::dialog::error::bgerror {invalid command name "{ScXlvy VVXlvy TVEB72 -1 0 0 0 0} {rst leaf icon_vlog_in_sig Net {} {} In {} {} {} {} {}}"}
