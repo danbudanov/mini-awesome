@@ -139,6 +139,8 @@ assign LED[7: 1]     = fpga_led_internal;
 assign fpga_clk_50   = FPGA_CLK_50;
 assign stm_hw_events = {{15{1'b0}}, SW, fpga_led_internal, fpga_debounced_buttons};
 
+assign LED[0]        = 1'b1;
+
 soc_system u0 (
     .clk_clk                               (FPGA_CLK_50),        //                            clk.clk
     .reset_reset_n                         (hps_fpga_reset_n),   //                          reset.reset_n
@@ -262,5 +264,19 @@ altera_edge_detector pulse_debug_reset(
 defparam pulse_debug_reset.PULSE_EXT = 32;
 defparam pulse_debug_reset.EDGE_TYPE = 1;
 defparam pulse_debug_reset.IGNORE_RST_WHILE_BUSY = 1;
+
+
+// Debounce logic to clean out glitches within 1ms
+debounce debounce_inst(
+             .clk(fpga_clk_50),
+             .reset_n(hps_fpga_reset_n),
+             .data_in(KEY),
+             .data_out(fpga_debounced_buttons)
+         );
+defparam debounce_inst.WIDTH = 2;
+defparam debounce_inst.POLARITY = "LOW";
+defparam debounce_inst.TIMEOUT = 50000;               // at 50Mhz this is a debounce time of 1ms
+defparam debounce_inst.TIMEOUT_WIDTH = 16;            // ceil(log2(TIMEOUT))
+
 
 endmodule
