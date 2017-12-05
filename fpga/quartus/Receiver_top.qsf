@@ -581,7 +581,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3]
-set_global_assignment -name VERILOG_FILE soc_system/synthesis/soc_system.v
 set_global_assignment -name QIP_FILE soc_system/synthesis/soc_system.qip
 set_global_assignment -name VERILOG_FILE ip/edge_detect/altera_edge_detector.v
 set_global_assignment -name VERILOG_FILE ip/debounce/debounce.v
