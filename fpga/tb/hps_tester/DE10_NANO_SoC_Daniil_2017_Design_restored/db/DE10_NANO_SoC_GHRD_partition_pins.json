@@ -1,0 +1,149 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "LED[1]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[2]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[3]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[4]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[5]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[6]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[7]",
+					"strict" : false
+				},
+				{
+					"name" : "ADC_NCS",
+					"strict" : false
+				},
+				{
+					"name" : "ADC_SCK",
+					"strict" : false
+				},
+				{
+					"name" : "ADC_IN",
+					"strict" : false
+				},
+				{
+					"name" : "LED[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[5]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[6]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[7]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[8]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[9]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[10]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[11]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[12]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[13]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[14]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO[15]",
+					"strict" : false
+				},
+				{
+					"name" : "FPGA_CLK1_50",
+					"strict" : false
+				},
+				{
+					"name" : "SW[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[3]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ADC_OUT",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
