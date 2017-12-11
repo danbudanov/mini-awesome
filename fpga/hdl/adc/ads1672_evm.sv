@@ -134,9 +134,6 @@ begin : WRITE_DATA
     if ( data_write ) 
         // Note: data is clocked in MSB first
         data[DATA_WIDTH - 1 - data_ct] <= drr;
-    //end else begin 
-        //data[DATA_WIDTH - 1 - data_ct] <= data[DATA_WIDTH - 1 - data_ct];
-    //end
 end
 
 endmodule
