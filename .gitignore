@@ -1,0 +1,9 @@
+.DS_Store
+FOR004
+*.pyc
+*.m~
+*.asv
+*.swp
+se_data/
+IRI2007/
+*~

@@ -5,6 +5,8 @@
 #include <cstdio>
 #include <ctime>
 
+// GIT comment test
+
 using namespace std;
 
 // Read thread reads all previously written DRAM entires written to by write thread
