@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <string>
 #include <pthread.h>
+#include <cstdio>
+#include <ctime>
 
 using namespace std;
 
@@ -37,6 +39,11 @@ uint32_t * DRAM_write_address;
 
 // Address used by read thread to read from DRAM
 uint32_t * DRAM_read_address;
+
+int readWriteGap = 0;
+
+clock_t start;
+double duration;
 
 // Enumeration to make circular_buffer_update function more readable
 typedef enum Memory_Types
@@ -101,12 +108,48 @@ void * readFromDRAM(void * v)
 {
     unsigned long threadID = (unsigned long) v;
     
+    bool holding = false;
+    bool going = false;
+    
     // Run continuously (Ctrl+C)
     while(true)
     {
-        // While the write thread is ahead of you
-        if(DRAM_read_address <= DRAM_write_address)
+        if(readWriteGap <= 0)
         {
+            holding = true;
+            pthread_mutex_lock(&coutMutex);
+            {
+                if(going)
+                {
+                    going = false;
+                    holding = true;
+                    
+                    cout << "Starting timer..." << endl;
+                    start = clock();
+                }
+                
+                cout << "Read thread caught up to write thread. Waiting..." << endl;
+            }
+            pthread_mutex_unlock(&coutMutex);
+
+        }
+        
+        else
+        {
+            if(holding)
+            {
+                holding = false;
+                going = true;
+                
+                pthread_mutex_lock(&coutMutex);
+                {
+                    cout << "Stopping timer..." << endl;
+                    duration = (clock() - start) / (double) CLOCKS_PER_SEC;
+                    cout << "Elapsed time: " << duration << endl;
+                }
+                pthread_mutex_unlock(&coutMutex);
+            }
+            
             uint32_t value = 0;
             
             // Safely access the DRAM and read the value
@@ -126,16 +169,8 @@ void * readFromDRAM(void * v)
         
             // Update the position of the DRAM_read_address
             circular_buffer_update(DRAM_read_address, DRAM);
-        }
-        
-        // If you have caught up to the write thread, wait
-        else
-        {
-            pthread_mutex_lock(&coutMutex);
-            {
-                cout << "Read thread caught up to write thread. Waiting..." << endl;
-            }
-            pthread_mutex_unlock(&coutMutex);
+            
+            readWriteGap--;
         }
     }
 }
@@ -165,6 +200,8 @@ void * writeToDRAM(void * v)
         // Update both the FPGA_read_address and DRAM_write_address for next iteration
         circular_buffer_update(FPGA_read_address, FPGA);
         circular_buffer_update(DRAM_write_address, DRAM);
+        
+        readWriteGap++;
     }
 }
 
