@@ -122,20 +122,20 @@ void * readFromDRAM(void * v)
         if(readWriteGap <= 0)
         {
             holding = true;
-            pthread_mutex_lock(&coutMutex);
+//            pthread_mutex_lock(&coutMutex);
             {
                 if(going)
                 {
                     going = false;
                     holding = true;
                     
-   //                 cout << "Starting timer..." << endl;
+    //                cout << "Starting timer..." << endl;
                     start = clock();
                 }
                 
- //               cout << "Read thread caught up to write thread. Waiting..." << endl;
+  //              cout << "Read thread caught up to write thread. Waiting..." << endl;
             }
-            pthread_mutex_unlock(&coutMutex);
+//            pthread_mutex_unlock(&coutMutex);
 
         }
         
@@ -145,34 +145,34 @@ void * readFromDRAM(void * v)
             {
                 holding = false;
                 going = true;
-        /*        
-                pthread_mutex_lock(&coutMutex);
+                
+      /*          pthread_mutex_lock(&coutMutex);
                 {
                     cout << "Stopping timer..." << endl;
                     duration = (clock() - start) / (double) CLOCKS_PER_SEC;
                     cout << "Elapsed time: " << duration << endl;
                 }
                 pthread_mutex_unlock(&coutMutex);
-          */
+        */  
             }
             
             uint32_t value = 0;
             
             // Safely access the DRAM and read the value
-            pthread_mutex_lock(&memMutex);
+//            pthread_mutex_lock(&memMutex);
             {
                 value = (*DRAM_read_address);
             }
-            pthread_mutex_unlock(&memMutex);
-            
+  //          pthread_mutex_unlock(&memMutex);
+ /*           
             // Safely print that value to the console
             // EDIT: change this to write to external memory for implementation on SoC
             pthread_mutex_lock(&coutMutex);
             {
-       //         cout << "(+" << clock() / (double) CLOCKS_PER_SEC << ") - - - " << "DRAM read[" << DRAM_read_address << "]: " << value << endl;
+                cout << "(+" << clock() / (double) CLOCKS_PER_SEC << ") - - - " << "DRAM read[" << DRAM_read_address << "]: " << value << endl;
             }
             pthread_mutex_unlock(&coutMutex);
-        
+   */     
             // Update the position of the DRAM_read_address
             circular_buffer_update(DRAM_read_address, DRAM);
             
@@ -190,21 +190,21 @@ void * writeToDRAM(void * v)
     while(true)
     {
         // Safely access the FPGA memory and write the current value to DRAM
-        pthread_mutex_lock(&memMutex);
+//        pthread_mutex_lock(&memMutex);
         {
             (*DRAM_write_address) = (*FPGA_read_address);
         }
-        pthread_mutex_unlock(&memMutex);
+ //       pthread_mutex_unlock(&memMutex);
 
         numWrites++; 
-       
+ /*      
         // Safely print what you just wrote
         pthread_mutex_lock(&coutMutex);
         {
- //           cout << "(+" << clock() / (double) CLOCKS_PER_SEC << ") - - - "  << "DRAM write[" << DRAM_write_address << "]: " << (*FPGA_read_address) << endl;
+            cout << "(+" << clock() / (double) CLOCKS_PER_SEC << ") - - - "  << "DRAM write[" << DRAM_write_address << "]: " << (*FPGA_read_address) << endl;
         }
         pthread_mutex_unlock(&coutMutex);
-        
+   */     
         // Update both the FPGA_read_address and DRAM_write_address for next iteration
         circular_buffer_update(FPGA_read_address, FPGA);
         circular_buffer_update(DRAM_write_address, DRAM);
@@ -276,6 +276,6 @@ int main()
     
 
     // Wait for thread termination (don't let program finish)
-//    pthread_join(readThread, NULL);
-//    pthread_join(writeThread, NULL);
+  //  pthread_join(readThread, NULL);
+  //  pthread_join(writeThread, NULL);
 }
