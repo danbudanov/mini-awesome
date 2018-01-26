@@ -47,6 +47,9 @@ int readWriteGap = 0;
 clock_t start;
 double duration;
 
+int numWrites = 0;
+int maxWrites = 10000;
+
 // Enumeration to make circular_buffer_update function more readable
 typedef enum Memory_Types
 {
@@ -126,11 +129,11 @@ void * readFromDRAM(void * v)
                     going = false;
                     holding = true;
                     
-                    cout << "Starting timer..." << endl;
+   //                 cout << "Starting timer..." << endl;
                     start = clock();
                 }
                 
-                cout << "Read thread caught up to write thread. Waiting..." << endl;
+ //               cout << "Read thread caught up to write thread. Waiting..." << endl;
             }
             pthread_mutex_unlock(&coutMutex);
 
@@ -142,7 +145,7 @@ void * readFromDRAM(void * v)
             {
                 holding = false;
                 going = true;
-                
+        /*        
                 pthread_mutex_lock(&coutMutex);
                 {
                     cout << "Stopping timer..." << endl;
@@ -150,6 +153,7 @@ void * readFromDRAM(void * v)
                     cout << "Elapsed time: " << duration << endl;
                 }
                 pthread_mutex_unlock(&coutMutex);
+          */
             }
             
             uint32_t value = 0;
@@ -165,7 +169,7 @@ void * readFromDRAM(void * v)
             // EDIT: change this to write to external memory for implementation on SoC
             pthread_mutex_lock(&coutMutex);
             {
-                cout << "DRAM read[" << DRAM_read_address << "]: " << value << endl;
+       //         cout << "(+" << clock() / (double) CLOCKS_PER_SEC << ") - - - " << "DRAM read[" << DRAM_read_address << "]: " << value << endl;
             }
             pthread_mutex_unlock(&coutMutex);
         
@@ -191,11 +195,13 @@ void * writeToDRAM(void * v)
             (*DRAM_write_address) = (*FPGA_read_address);
         }
         pthread_mutex_unlock(&memMutex);
-        
+
+        numWrites++; 
+       
         // Safely print what you just wrote
         pthread_mutex_lock(&coutMutex);
         {
-            cout << "DRAM write[" << DRAM_write_address << "]: " << (*FPGA_read_address) << endl;
+ //           cout << "(+" << clock() / (double) CLOCKS_PER_SEC << ") - - - "  << "DRAM write[" << DRAM_write_address << "]: " << (*FPGA_read_address) << endl;
         }
         pthread_mutex_unlock(&coutMutex);
         
@@ -251,8 +257,25 @@ int main()
     // Spawn threads
     pthread_create(&readThread, 0, readFromDRAM, (void*) 0);
     pthread_create(&writeThread, 0, writeToDRAM, (void*) 1);
+
+    double startTime = clock();    
+   
+    while(numWrites < maxWrites) {}
+
+    double stopTime = clock();
+
+    double duration = (stopTime - startTime) / (double) CLOCKS_PER_SEC;
+    double avgWriteTime = duration/10000;
+
+    pthread_mutex_lock(&coutMutex);
+    {
+            cout << "Time to write 10,000: " << duration << endl;
+            cout << "Average time per write: " << avgWriteTime << endl;
+    }
+    pthread_mutex_unlock(&coutMutex);
     
+
     // Wait for thread termination (don't let program finish)
-    pthread_join(readThread, NULL);
-    pthread_join(writeThread, NULL);
+//    pthread_join(readThread, NULL);
+//    pthread_join(writeThread, NULL);
 }
