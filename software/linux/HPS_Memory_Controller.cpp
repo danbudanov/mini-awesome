@@ -5,8 +5,6 @@
 #include <cstdio>
 #include <ctime>
 
-// GIT comment test
-
 using namespace std;
 
 // Read thread reads all previously written DRAM entires written to by write thread
@@ -16,7 +14,6 @@ pthread_t readThread;
 pthread_t writeThread;
 
 // Mutexes to manage race conditions and resource contention
-pthread_mutex_t memMutex;
 pthread_mutex_t coutMutex;
 
 // FPGA addresses and size
@@ -42,11 +39,14 @@ uint32_t * DRAM_write_address;
 // Address used by read thread to read from DRAM
 uint32_t * DRAM_read_address;
 
+// Keep track of how far behind the read thread is from the write thread
 int readWriteGap = 0;
 
+// Timing variables
 clock_t start;
 double duration;
 
+// Average write time variables
 int numWrites = 0;
 int maxWrites = 10000;
 
@@ -122,20 +122,20 @@ void * readFromDRAM(void * v)
         if(readWriteGap <= 0)
         {
             holding = true;
-//            pthread_mutex_lock(&coutMutex);
+        //  pthread_mutex_lock(&coutMutex);
             {
                 if(going)
                 {
                     going = false;
                     holding = true;
                     
-    //                cout << "Starting timer..." << endl;
+                //    cout << "Starting timer..." << endl;
                     start = clock();
                 }
                 
-  //              cout << "Read thread caught up to write thread. Waiting..." << endl;
+            //  cout << "Read thread caught up to write thread. Waiting..." << endl;
             }
-//            pthread_mutex_unlock(&coutMutex);
+            //pthread_mutex_unlock(&coutMutex);
 
         }
         
@@ -146,25 +146,23 @@ void * readFromDRAM(void * v)
                 holding = false;
                 going = true;
                 
-      /*          pthread_mutex_lock(&coutMutex);
+            /*
+                pthread_mutex_lock(&coutMutex);
                 {
                     cout << "Stopping timer..." << endl;
                     duration = (clock() - start) / (double) CLOCKS_PER_SEC;
                     cout << "Elapsed time: " << duration << endl;
                 }
                 pthread_mutex_unlock(&coutMutex);
-        */  
+            */  
             }
             
             uint32_t value = 0;
             
-            // Safely access the DRAM and read the value
-//            pthread_mutex_lock(&memMutex);
-            {
-                value = (*DRAM_read_address);
-            }
-  //          pthread_mutex_unlock(&memMutex);
- /*           
+            // Access the DRAM and read the value
+            value = (*DRAM_read_address);
+  
+        /*          
             // Safely print that value to the console
             // EDIT: change this to write to external memory for implementation on SoC
             pthread_mutex_lock(&coutMutex);
@@ -172,7 +170,8 @@ void * readFromDRAM(void * v)
                 cout << "(+" << clock() / (double) CLOCKS_PER_SEC << ") - - - " << "DRAM read[" << DRAM_read_address << "]: " << value << endl;
             }
             pthread_mutex_unlock(&coutMutex);
-   */     
+        */    
+        
             // Update the position of the DRAM_read_address
             circular_buffer_update(DRAM_read_address, DRAM);
             
@@ -189,15 +188,16 @@ void * writeToDRAM(void * v)
     // Run continuously (Ctrl+C)
     while(true)
     {
-        // Safely access the FPGA memory and write the current value to DRAM
-//        pthread_mutex_lock(&memMutex);
-        {
-            (*DRAM_write_address) = (*FPGA_read_address);
-        }
- //       pthread_mutex_unlock(&memMutex);
+        // Access the FPGA memory and write the current value to DRAM
+        // NOTE: Don't need mutexes because of implicit control flow of the code
+        // (i.e. - We make sure the read thread always trails the write thread and
+        //          therefore you will never have memory contention)
+        
+        (*DRAM_write_address) = (*FPGA_read_address);
 
         numWrites++; 
- /*      
+ 
+/*      
         // Safely print what you just wrote
         pthread_mutex_lock(&coutMutex);
         {
@@ -205,6 +205,7 @@ void * writeToDRAM(void * v)
         }
         pthread_mutex_unlock(&coutMutex);
    */     
+        
         // Update both the FPGA_read_address and DRAM_write_address for next iteration
         circular_buffer_update(FPGA_read_address, FPGA);
         circular_buffer_update(DRAM_write_address, DRAM);
@@ -223,8 +224,7 @@ int main()
     
     // EDIT: use these functions when implementing on SoC
     //FPGA_start = GET_FPGA_BASE_ADDRESS();
-    //FPGA_size = GET_FPGA_SIZE();
-    
+    //FPGA_size = GET_FPGA_SIZE(); 
     //DRAM_start = GET_DRAM_BASE_ADDRESS();
     //DRAM_size = GET_DRAM_SIZE();
     
@@ -251,13 +251,14 @@ int main()
     print_DRAM_memory();
 
     // Initalize mutexes
-    pthread_mutex_init(&memMutex,0);
     pthread_mutex_init(&coutMutex,0);
     
     // Spawn threads
     pthread_create(&readThread, 0, readFromDRAM, (void*) 0);
     pthread_create(&writeThread, 0, writeToDRAM, (void*) 1);
 
+    // Measure time it takes to write 10,000 samples
+    // and find the average time/write
     double startTime = clock();    
    
     while(numWrites < maxWrites) {}
@@ -274,8 +275,7 @@ int main()
     }
     pthread_mutex_unlock(&coutMutex);
     
-
     // Wait for thread termination (don't let program finish)
-  //  pthread_join(readThread, NULL);
-  //  pthread_join(writeThread, NULL);
+    //pthread_join(readThread, NULL);
+    //pthread_join(writeThread, NULL);
 }
