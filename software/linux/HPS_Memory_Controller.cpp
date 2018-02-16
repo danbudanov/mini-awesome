@@ -20,13 +20,9 @@
 
 using namespace std;
 
-// Read thread reads all previously written DRAM entires written to by write thread
 pthread_t readThread;
-
-// Write thread reads from FPGA and writes to sequential entries in DRAM
 pthread_t writeThread;
 
-// Mutexes to manage race conditions and resource contention
 pthread_mutex_t coutMutex;
 
 // FPGA addresses and size
@@ -45,11 +41,7 @@ uint32_t DRAM_buffer[20];
 
 // Address used by write thread to read from FPGA
 uint32_t * FPGA_read_address;
-
-// Address used by write thread to write the data (read from FPGA) to DRAM
 uint32_t * DRAM_write_address;
-
-// Address used by read thread to read from DRAM
 uint32_t * DRAM_read_address;
 
 // Keep track of how far behind the read thread is from the write thread
@@ -72,6 +64,14 @@ typedef enum Memory_Types
     FPGA = 0,
     DRAM = 1,
 } Memory;
+
+// Use datetime instead
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void getTimeStamp()
+{
+    int
+}
 
 // Initialization function for temporary FPGA buffer
 void init_FPGA_memory()
@@ -284,6 +284,8 @@ int main()
     signal(SIGINT, signal_callback_handler);
     
     cout << "Start of main" << endl;
+    
+    // Timestamp verification
     
     // Initialize all the pointers
     FPGA_start = FPGA_buffer;
